@@ -1,50 +1,35 @@
-var names_of_people = [];
-    
-function submit()
-{
-    var GuestName = document.getElementById("name1").value;
-	// use the push function as - names_of_people.push(GuestName);
-	names_of_people.push(GuestName);
-	console.log(GuestName);    
-    console.log(names_of_people);
-    var lenght_of_name = names_of_people.length;
-    console.log(lenght_of_name);
-	document.getElementById("display_name").innerHTML=names_of_people.toString();
-   }
+//https://teachablemachine.withgoogle.com/models/s3hIJNBc8/
 
+Webcam.set({
+width:350,
+height:300,
+image_format :'png',
+png_quality:90
+});
 
+camera = document.getElementById("camera");
 
-function show()
-{
-	var i= names_of_people.join("<br>");
-	console.log(names_of_people);
-	document.getElementById("p1").innerHTML=i.toString();
-	document.getElementById("sort_button").style.display="block";
-	
+Webcam.attach( '#camera' );
+
+function take_snapshot(){
+    Webcam.snap(function(data_uri) {
+        document.getElementById("result").innerHTML  = '<img id = "captured_image" src = "'+data_uri+'"/>';
+
+    } );
 }
 
+console.log('ml5 version:',ml5.version);
 
-function sorting()
-	{
-		names_of_people.sort()  ;         // add the sort function here
-		// .sort();
-		var i= names_of_people.join("<br>");
-		console.log(names_of_people);		
-		document.getElementById("sorted").innerHTML=i.toString();
-		}
+classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/s3hIJNBc8/',modelLoaded);
 
+function modelLoaded() {
+    console.log('Model Loaded!');
+}
 
-function searching()
-{
-	var s= document.getElementById("s1").value;
-	var found=0;
-	var j;
-	for(j=0; j<names_of_people.length; j++)
-		{
-			if(s==names_of_people[j]){
-				found=found+1;
-			}	
-		}
-	document.getElementById("p2").innerHTML="name found "+found+" time/s";
-	console.log("found name "+found+" time/s");
+function speak(){
+    var synth = window.SpeechSynthesis;
+    speak_data_1 = "The first prediction is"+prediction_1;
+    speak_data_2 = "and the second prediction is"+prediction_2;
+   var utterThis = new SpeechSynthesisUtterance(speak_data_1 + speak_data_2);
+   synth.speak(utterThis);
 }

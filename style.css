@@ -1,33 +1,33 @@
-#submit_button
+body 
 {
-	margin-top: 20px; 
-	margin-bottom: 20px; 
+  color: white;
+  background: #c0d3ff;
 }
-#sort_button
+span
 {
-	display: none;
-	margin-top: 20px; 
-	margin-bottom: 20px; 
+  font-size: 30px;
 }
-
-input
+#camera , #result
 {
-	margin: 10px;
+  border: 2px dashed black;
+  width: 350px;
+  height: 300px; 
 }
-.display_name_with_commas
+#result_emotion_name ,#result_emotion_name2  
 {
-	border: 1px solid green;
-    padding: 10px;
-	background-color: greenyellow;
-	border-radius: 10px;
-    width: 50%;
+  color: black;
 }
-
-#display_name_without_commas
+.emotion_name
 {
-	border: 1px solid red;
-    padding: 10px;
-    background-color: lightcoral;
-	border-radius: 10px;
-    width: 50%;
+  font-size: 40px;
+}
+.emoji
+{
+  font-size:48px;
+}
+.heading
+{
+  font-size: 18px;
+  border-radius: 10px;
+  letter-spacing:10px;
 }
